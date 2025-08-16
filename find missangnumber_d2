@@ -1,0 +1,36 @@
+public class MissingNumber {
+
+    public static int findMissingNumber(int[] arr) {
+        int n = arr.length + 1;  // since array has n-1 numbers
+        long totalSum = (long) n * (n + 1) / 2;  // use long to avoid overflow
+        long arrSum = 0;
+
+        for (int num : arr) {
+            arrSum += num;
+        }
+
+        return (int) (totalSum - arrSum);
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        System.out.println("Missing number: " + findMissingNumber(new int[]{1, 2, 4, 5})); // 3
+
+        // Test Case 2
+        System.out.println("Missing number: " + findMissingNumber(new int[]{2, 3, 4, 5})); // 1
+
+        // Test Case 3
+        System.out.println("Missing number: " + findMissingNumber(new int[]{1, 2, 3, 4})); // 5
+
+        // Test Case 4
+        System.out.println("Missing number: " + findMissingNumber(new int[]{1})); // 2
+
+        // Test Case 5: Large case n = 1,000,000
+        int n = 1000000;
+        int[] bigArr = new int[n - 1];
+        for (int i = 1; i < n; i++) {
+            bigArr[i - 1] = i;  // missing number will be 1000000
+        }
+        System.out.println("Missing number: " + findMissingNumber(bigArr)); // 1000000
+    }
+}
