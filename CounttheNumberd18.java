@@ -1,14 +1,13 @@
-import java.util.Scanner;
-
-public class DivisorCount {
+public class DivisorCountTest {
+    // Function to count divisors of N
     public static int countDivisors(int N) {
         int count = 0;
         for (int i = 1; i * i <= N; i++) {
             if (N % i == 0) {
                 if (i == N / i) {
-                    count++;  // Perfect square, count once
+                    count++;  // perfect square divisor
                 } else {
-                    count += 2; // Count both i and N/i
+                    count += 2; // both i and N/i
                 }
             }
         }
@@ -16,9 +15,12 @@ public class DivisorCount {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        System.out.println(countDivisors(N));
-        sc.close();
+        // Given test cases
+        int[] testCases = {18, 29, 100, 1, 997};
+
+        for (int N : testCases) {
+            int result = countDivisors(N);
+            System.out.println("Input: N = " + N + " -> Output: " + result);
+        }
     }
 }
