@@ -1,0 +1,61 @@
+import java.util.Stack;
+
+public class SortStackRecursion {
+
+    // Insert element into sorted stack
+    private static void insertSorted(Stack<Integer> stack, int element) {
+        if (stack.isEmpty() || element > stack.peek()) {
+            stack.push(element);
+            return;
+        }
+        int top = stack.pop();
+        insertSorted(stack, element);
+        stack.push(top);
+    }
+
+    // Recursively sort the stack
+    public static void sortStack(Stack<Integer> stack) {
+        if (stack.isEmpty()) return;
+        int top = stack.pop();
+        sortStack(stack);
+        insertSorted(stack, top);
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        Stack<Integer> s1 = new Stack<>();
+        s1.push(7);
+        s1.push(1);
+        s1.push(5);
+        sortStack(s1);
+        System.out.println(s1); // Expected [1, 5, 7]
+
+        // Test Case 2
+        Stack<Integer> s2 = new Stack<>();
+        s2.push(5);
+        sortStack(s2);
+        System.out.println(s2); // Expected [5]
+
+        // Test Case 3
+        Stack<Integer> s3 = new Stack<>();
+        s3.push(-3);
+        s3.push(14);
+        s3.push(8);
+        s3.push(2);
+        sortStack(s3);
+        System.out.println(s3); // Expected [-3, 2, 8, 14]
+
+        // Test Case 4 (Empty stack)
+        Stack<Integer> s4 = new Stack<>();
+        sortStack(s4);
+        System.out.println(s4); // Expected []
+
+        // Test Case 5 (All same elements)
+        Stack<Integer> s5 = new Stack<>();
+        s5.push(3);
+        s5.push(3);
+        s5.push(3);
+        sortStack(s5);
+        System.out.println(s5); // Expected [3, 3, 3]
+    }
+}
